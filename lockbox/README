@@ -1,0 +1,9 @@
+Encrypt something with multiple keys
+The secret is localised, should be encrypted with multiple keys (after each other)
+Here you can specify a number of addresses, which all hold one key and a way for them to open them up. Only if all people open their keys, the box can be openend by decrypting the secret using all the keys.
+
+Every key needs to have the format bytes32 (32 byte values, resulting in 32*8=256 bit), but you can extend this, by using multiple contracts.
+
+I also suggests encrypting the secret again with a final code, that is known to everybody (who shall decrypt it), to make surethat nobody stealing the secret can read it. This allows also for keyholders not to be able to read the secret.
+
+
