@@ -9,8 +9,9 @@ def index():
 
 
 @app.route('/<add>')
-def load(add):
-    return loadaddress(add)
+def handlepage(add):
+    #return loadaddress(add)
+    return load(add)
    
 @app.route('/favicon.ico')
 def favicon():
