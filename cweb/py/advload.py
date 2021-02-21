@@ -1,11 +1,11 @@
-from web3 import Web3
+from web3 import Web3,eth
 
 from solcx import compile_source
 
 import datetime
 
 from loadonce import loadonce
-
+from getaccount import getaccount
 
 def get_abi(fn):
     with open(fn,"r") as f:
@@ -20,7 +20,10 @@ def abi_lookup():
     return get_abi("../sol/contracts/Lookup.sol")
 @loadonce("provider")
 def provider():
-    return Web3(Web3.HTTPProvider('https://kovan.infura.io/v3/c83277c8952e4e1280aa1a853fb18fcf'))
+    w3= Web3(Web3.HTTPProvider('https://kovan.infura.io/v3/c83277c8952e4e1280aa1a853fb18fcf'))
+    w3.eth.defaultAccount=acc()
+    
+    return w3
 def checksum(address):
     return Web3.toChecksumAddress(address)
 def getcontract(w3,address,abi):
@@ -59,10 +62,36 @@ def getbalance(address):
     address=checksum(address)
     return w3.eth.getBalance(address)
 
+#def transfer()
+
+@loadonce("account")
+def acc():
+    return getaccount()
+
+def tip(address,amount):
+    w3=provider()
+    abi=abi_page()
+    address=checksum(address)
+    c=getcontract(w3,address,abi)
+
+
+
+    reg=c.functions.tip().transact({"value":amount,"from":acc().address})
+
+    return reg#content.decode("utf-8")
+
+
+
+
 
 if __name__=='__main__':
+    #print(acc())
+    #exit()
     #print(lookup("test"))
     #print(loadaddress("0x33b0cd164decc76a20cf9080e06c52e5cd7a030e"))
+    #print(getbalance("0x33b0cd164decc76a20cf9080e06c52e5cd7a030e"))
+    print(getbalance("0x33b0cd164decc76a20cf9080e06c52e5cd7a030e"))
+    print(tip("0x33b0cd164decc76a20cf9080e06c52e5cd7a030e",100))
     print(getbalance("0x33b0cd164decc76a20cf9080e06c52e5cd7a030e"))
 
 
