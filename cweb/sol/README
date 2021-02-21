@@ -1,0 +1,4 @@
+My notary...proof that you own a certain file (using hash codes) at a certain time, using a blockchain contract
+py contains an implementation on how to use this in python. It is not yet able to save anything to the blockchain (atm this is using a test network, but you can easily chance this if you need it), since this needs (play) money, but you can read. That means, if somebody linked you to here, to proof ownership of a file, you can use notar.py
+
+You need to modify the address (whoever linked you one, should also give you an address) and tohash to be a string representation of whatever you want to test the existance of. Afterwards just execute notar.py and it should result in the time this object existed (and a verification through hash codes). You need to make sure, the boolean value in the second to last value says true and that the time given in the last line matches your expectations. If you have problems using this, please contact me @ root@psorus.de

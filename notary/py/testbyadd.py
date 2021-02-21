@@ -59,7 +59,8 @@ def applytoaddress(address,what):
 
 
 
-
+if __name__ == '__main__':
+    print(getbyaddress("0x8b03Af72F1Aba25B6B2e60A81b7b3044e1ea0Bb7"))
 
 
 
